@@ -1,4 +1,4 @@
-package com.github.valeryad.hurtmeplanty.page;
+package com.github.valeryad.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -127,8 +127,8 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         return this;
     }
 
-    public GoogleCloudEstimationResultsPage estimate() {
+    public GoogleCloudEstimateResultsPage estimate() {
         addToEstimateButton.click();
-        return new GoogleCloudEstimationResultsPage(driver);
+        return new GoogleCloudEstimateResultsPage(driver);
     }
 }

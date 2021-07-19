@@ -1,8 +1,8 @@
-package com.github.valeryad.hardcore.test;
+package com.github.valeryad.test;
 
-import com.github.valeryad.hardcore.page.GoogleCloudEstimateResultsPage;
-import com.github.valeryad.hardcore.page.GoogleCloudHomePage;
-import com.github.valeryad.hardcore.page.TenMinutesEmailPage;
+import com.github.valeryad.page.GoogleCloudEstimateResultsPage;
+import com.github.valeryad.page.GoogleCloudHomePage;
+import com.github.valeryad.page.TenMinutesEmailPage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

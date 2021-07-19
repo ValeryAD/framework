@@ -1,4 +1,4 @@
-package com.github.valeryad.hardcore.page;
+package com.github.valeryad.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
