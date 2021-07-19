@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="google calculator tests" verbose="1" >
+    <test name="google calculator tests"   >
+        <packages>
+            <package name="com.github.valeryad.test" />
+        </packages>
+    </test>
+</suite>
