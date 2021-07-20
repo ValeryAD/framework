@@ -4,18 +4,14 @@ import com.github.valeryad.page.GoogleCloudEstimateResultsPage;
 import com.github.valeryad.page.GoogleCloudHomePage;
 import com.github.valeryad.page.TenMinutesEmailPage;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class GooglePricingCalculatorTest {
+public class GooglePricingCalculatorTest extends AbstractTest {
     private final static String SEARCH_TERM = "Google Cloud Platform Pricing Calculator";
     private final static int NUMBER_OF_INSTANCES = 4;
     private final static String OPERATING_SYSTEM_SOFTWARE = "Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS";
@@ -31,13 +27,7 @@ public class GooglePricingCalculatorTest {
     private static final double DELTA = 0.01;
 
 
-    private WebDriver driver;
 
-    @BeforeClass(alwaysRun = true)
-    private void manageDriverBrowser() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-    }
 
     @Test(description = "")
     public void estimationCostFromGoogleCalculatorShouldBeEqualToEstimationCostReceivedByEmail() {
@@ -96,11 +86,5 @@ public class GooglePricingCalculatorTest {
         Matcher matcher = pattern.matcher(estimatedCost);
         matcher.find();
         return Double.parseDouble(matcher.group().replace(",", ""));
-    }
-
-    @AfterClass(alwaysRun = true)
-    private void shutDownDriver() {
-        driver.quit();
-        driver = null;
     }
 }

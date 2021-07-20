@@ -1,8 +1,11 @@
 package com.github.valeryad.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GoogleCloudHomePage extends AbstractPage {
     private final static String GOOGLE_CLOUD_PAGE_URL = "https://cloud.google.com/";
@@ -25,7 +28,11 @@ public class GoogleCloudHomePage extends AbstractPage {
 
     public GoogleCloudSearchResultsPage searchResultsByTerm(String term) {
         searchElement.click();
-        searchInput.sendKeys(term + "\n");
+        searchInput.sendKeys(term);
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.visibilityOfElementLocated(By
+                        .xpath("//div[@id='devsite-search-popout-container-id-1']//*[contains(text(), 'Все результаты')]"))).click();
+
         return new GoogleCloudSearchResultsPage(driver);
     }
 }

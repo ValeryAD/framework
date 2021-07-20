@@ -1,6 +1,7 @@
 package com.github.valeryad.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -90,6 +91,8 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
 
     public GoogleCloudPricingCalculatorPage addGPUs(int gpusNumber, String gpuOptionStr) {
         addGPUsCheckBox.click();
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", instanceTypeSelect);
 
         numberOfGPUSelect.click();
         WebElement oneGPUOption = findElementLocatedBy(By.xpath(String
