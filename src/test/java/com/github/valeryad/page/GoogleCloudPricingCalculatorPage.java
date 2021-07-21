@@ -11,19 +11,19 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     @FindBy(xpath = "//md-tab-item[@class='md-tab ng-scope ng-isolate-scope md-ink-ripple md-active']")
     private WebElement computeEngineSection;
 
-    @FindBy(id = "input_65")
+    @FindBy(xpath = "//input[@name='quantity' and preceding-sibling::label[contains(text(), 'Number of instances')]]")
     private WebElement numberOfInstanceInput;
 
-    @FindBy(id = "select_78")
+    @FindBy(xpath = "//md-select[parent::md-input-container[contains(., 'Operating System / Software')]]")
     private WebElement operationSystemSelect;
 
-    @FindBy(id = "select_82")
+    @FindBy(xpath = "//md-select[parent::md-input-container[contains(., 'Machine Class')]]")
     private WebElement vmClassSelect;
 
-    @FindBy(xpath = "//md-select[@id='select_90']/..")
+    @FindBy(xpath = "//md-select[parent::md-input-container[contains(., 'Series')]]")
     private WebElement seriesSelect;
 
-    @FindBy(id = "select_92")
+    @FindBy(xpath = "//md-select[parent::md-input-container[contains(., 'Machine type')]]")
     private WebElement instanceTypeSelect;
 
     @FindBy(xpath = "//md-checkbox[contains(@ng-model, '.addGPUs')]")
@@ -63,7 +63,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage selectOperatingSystemAndSoftware(String option) {
         operationSystemSelect.click();
         WebElement operationSystemOption = findElementLocatedBy(By
-                .xpath(String.format("//div[@id='select_container_79']//md-option[child::div[contains(.,'%s')]]", option)));
+                .xpath(String.format("//md-option[contains(., '%s')]", option)));
         operationSystemOption.click();
         return this;
     }
@@ -71,7 +71,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage selectVMClass(String option) {
         vmClassSelect.click();
         WebElement vmClassOption = findElementLocatedBy(By
-                .xpath(String.format("//div[@class='md-select-menu-container md-active md-clickable']//md-option[child::div[contains(text(), '%s')]]", option)));
+                .xpath(String.format("//div[@class='md-select-menu-container md-active md-clickable']//md-option[contains(., '%s')]", option)));
         vmClassOption.click();
         return this;
     }
@@ -92,7 +92,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage addGPUs(int gpusNumber, String gpuOptionStr) {
         addGPUsCheckBox.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", instanceTypeSelect);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", operationSystemSelect);
 
         numberOfGPUSelect.click();
         WebElement oneGPUOption = findElementLocatedBy(By.xpath(String
