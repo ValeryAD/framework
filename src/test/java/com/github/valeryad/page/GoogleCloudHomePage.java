@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GoogleCloudHomePage extends AbstractPage {
     private final static String GOOGLE_CLOUD_PAGE_URL = "https://cloud.google.com/";
+    private static final String SEARCH_BUTTON_LOCATOR = "//div[@id='devsite-search-popout-container-id-1']//*[contains(text(), 'Все результаты')]";
 
     @FindBy(xpath = "//div[@class='devsite-search-container']")
     private WebElement searchElement;
@@ -29,9 +30,10 @@ public class GoogleCloudHomePage extends AbstractPage {
     public GoogleCloudSearchResultsPage searchResultsByTerm(String term) {
         searchElement.click();
         searchInput.sendKeys(term);
-        new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.visibilityOfElementLocated(By
-                        .xpath("//div[@id='devsite-search-popout-container-id-1']//*[contains(text(), 'Все результаты')]"))).click();
+
+        WebElement searchButton = findElementLocatedBy(By
+                .xpath(SEARCH_BUTTON_LOCATOR));
+        searchButton.click();
 
         return new GoogleCloudSearchResultsPage(driver);
     }

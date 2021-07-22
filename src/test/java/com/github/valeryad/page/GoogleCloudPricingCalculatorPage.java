@@ -8,6 +8,16 @@ import org.openqa.selenium.support.FindBy;
 
 public class GoogleCloudPricingCalculatorPage extends AbstractPage {
 
+    private static final String OS_SOFTWARE_OPTION_LOCATOR_PATTERN = "//md-option[contains(., '%s')]";
+    private static final String VM_CLASS_OPTION_LOCATOR_PATTERN = "//div[@class='md-select-menu-container md-active md-clickable']//md-option[contains(., '%s')]";
+    private static final String SERIES_OPTION_LOCATOR_PATTERN = "//md-option[child::div[contains(.,'%s')]]";
+    private static final String INSTANCE_TYPE_OPTION_LOCATOR_PATTERN = "//md-option/div[contains(.,'%s')]/..";
+    private static final String NUMBER_GPU_OPTION_LOCATOR_PATTERN = "//md-option[div[@class='md-text ng-binding' and text()=%s]]";
+    private static final String GPU_OPTION__LOCATOR_PATTERN = "//md-option[child::div[contains(.,'%s')]]";
+    private static final String LOCAL_SST_OPTION_LOCATOR_PATTERN = "//md-option[child::div[@class='md-text ng-binding' and contains(text(),'%s')]]";
+    private static final String LOCATION_OPTION_LOCATOR_PATTERN = "//md-select-menu[@class='md-overflow']//div[contains(text(), '%s')]/..";
+    private static final String COMMITTED_USAGE_OPTION_LOCATOR_PATTERN = "//md-select-menu//div[text()='%s']/..";
+
     @FindBy(xpath = "//md-tab-item[@class='md-tab ng-scope ng-isolate-scope md-ink-ripple md-active']")
     private WebElement computeEngineSection;
 
@@ -54,24 +64,31 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         driver.switchTo().frame("myFrame");
     }
 
+    @Override
+    public GoogleCloudEstimateResultsPage openPage() {
+        throw new RuntimeException("This method does not supposed to be used in this class." +
+                "If developer for some reasons really need to use it, its need to be overridden");
+    }
+
+
     public GoogleCloudPricingCalculatorPage fillNumberOfInstancesField(int numberOfInstances) {
         computeEngineSection.click();
         numberOfInstanceInput.sendKeys(String.valueOf(numberOfInstances));
         return this;
     }
 
-    public GoogleCloudPricingCalculatorPage selectOperatingSystemAndSoftware(String option) {
+    public GoogleCloudPricingCalculatorPage selectOSAndSoftware(String option) {
         operationSystemSelect.click();
-        WebElement operationSystemOption = findElementLocatedBy(By
-                .xpath(String.format("//md-option[contains(., '%s')]", option)));
-        operationSystemOption.click();
+        WebElement osSoftwareOption = findElementLocatedBy(By
+                .xpath(String.format(OS_SOFTWARE_OPTION_LOCATOR_PATTERN, option)));
+        osSoftwareOption.click();
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage selectVMClass(String option) {
         vmClassSelect.click();
         WebElement vmClassOption = findElementLocatedBy(By
-                .xpath(String.format("//div[@class='md-select-menu-container md-active md-clickable']//md-option[contains(., '%s')]", option)));
+                .xpath(String.format(VM_CLASS_OPTION_LOCATOR_PATTERN, option)));
         vmClassOption.click();
         return this;
     }
@@ -79,12 +96,12 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage selectSeriesAndInstanceType(String seriesOptionStr, String instanceTypeOptionStr) {
         seriesSelect.click();
         WebElement seriesOption = findElementLocatedBy(By.xpath(String
-                .format("//md-option[child::div[contains(.,'%s')]]", seriesOptionStr)));
+                .format(SERIES_OPTION_LOCATOR_PATTERN, seriesOptionStr)));
         seriesOption.click();
 
         instanceTypeSelect.click();
         WebElement instanceTypeOption = findElementLocatedBy(By.xpath(String
-                .format("//md-option/div[contains(.,'%s')]/..", instanceTypeOptionStr)));
+                .format(INSTANCE_TYPE_OPTION_LOCATOR_PATTERN, instanceTypeOptionStr)));
         instanceTypeOption.click();
         return this;
     }
@@ -95,38 +112,38 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", operationSystemSelect);
 
         numberOfGPUSelect.click();
-        WebElement oneGPUOption = findElementLocatedBy(By.xpath(String
-                .format("//md-option[div[@class='md-text ng-binding' and text()=%s]]", gpusNumber)));
-        oneGPUOption.click();
+        WebElement numberGPUOption = findElementLocatedBy(By.xpath(String
+                .format(NUMBER_GPU_OPTION_LOCATOR_PATTERN, gpusNumber)));
+        numberGPUOption.click();
 
         typeGPUSelect.click();
-        WebElement teslaT4GPUOption = findElementLocatedBy(By.xpath(String
-                .format("//md-option[child::div[contains(.,'%s')]]", gpuOptionStr)));
-        teslaT4GPUOption.click();
+        WebElement gpuOption = findElementLocatedBy(By.xpath(String
+                .format(GPU_OPTION__LOCATOR_PATTERN, gpuOptionStr)));
+        gpuOption.click();
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage addLocalSSD(String option) {
         localSSDSelect.click();
-        WebElement ssd2x375option = findElementLocatedBy(By.xpath(String
-                .format("//md-option[child::div[@class='md-text ng-binding' and contains(text(),'%s')]]", option)));
-        ssd2x375option.click();
+        WebElement localSSDOption = findElementLocatedBy(By.xpath(String
+                .format(LOCAL_SST_OPTION_LOCATOR_PATTERN, option)));
+        localSSDOption.click();
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage selectDataCenterLocation(String option) {
         dataCenterLocationSelect.click();
-        WebElement frankfurtLocationOption = findElementLocatedBy(By.xpath(String
-                .format("//md-select-menu[@class='md-overflow']//div[contains(text(), '%s')]/..", option)));
-        frankfurtLocationOption.click();
+        WebElement LocationOption = findElementLocatedBy(By.xpath(String
+                .format(LOCATION_OPTION_LOCATOR_PATTERN, option)));
+        LocationOption.click();
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage selectCommittedUsageTerm(String option) {
         committedUsageSelect.click();
-        WebElement oneYearCommittedUsageOption =
-                findElementsLocatedBy(By.xpath(String.format("//md-select-menu//div[text()='%s']/..", option))).get(1);
-        oneYearCommittedUsageOption.click();
+        WebElement committedUsageOption =
+                findElementsLocatedBy(By.xpath(String.format(COMMITTED_USAGE_OPTION_LOCATOR_PATTERN, option))).get(1);
+        committedUsageOption.click();
         return this;
     }
 

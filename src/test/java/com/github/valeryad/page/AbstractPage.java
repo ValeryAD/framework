@@ -18,6 +18,8 @@ public abstract class AbstractPage {
         PageFactory.initElements(driver, this);
     }
 
+    protected abstract AbstractPage openPage();
+
     public WebElement findElementLocatedBy(By by) {
         return new WebDriverWait(driver, COMMON_TIMEOUT)
                 .until(ExpectedConditions.visibilityOfElementLocated(by));

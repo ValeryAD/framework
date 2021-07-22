@@ -11,10 +11,12 @@ public class TenMinutesEmailPage extends AbstractPage {
 
     private static final String PAGE_URL = "https://10minemail.com/ru/";
     private static final String ATTRIBUTE = "value";
-    private static final int TIMEOUT_WAITING_FOR_LETTER = 120;
+    private static final int TIMEOUT_WAITING_FOR_LETTER = 40;
+    private static final String GOOGLE_LETTER_LINK_LOCATOR = "//a[contains(text(), 'Google Cloud Platform Price Estimate')]";
+    private static final String ESTIMATED_PRICE_LABEL_LOCATOR = "//h2[contains(text(), 'Estimated Monthly Cost:')]";
 
     @FindBy(id = "mail")
-    private WebElement emailLabel;
+    private WebElement emailAddressLabel;
 
     public TenMinutesEmailPage(WebDriver driver) {
         super(driver);
@@ -25,23 +27,21 @@ public class TenMinutesEmailPage extends AbstractPage {
         return this;
     }
 
-    public String readEmail() {
-        return emailLabel.getAttribute(ATTRIBUTE);
+    public String readEmailAddress() {
+        return emailAddressLabel.getAttribute(ATTRIBUTE);
     }
 
     public String readEstimatedPrice() {
-        WebElement googleLetter = new WebDriverWait(driver, TIMEOUT_WAITING_FOR_LETTER)
+        WebElement googleLetterLink = new WebDriverWait(driver, TIMEOUT_WAITING_FOR_LETTER)
                 .until(ExpectedConditions
-                        .presenceOfElementLocated(By
-                                .xpath("//a[contains(text(), 'Google Cloud Platform Price Estimate')]")));
-        googleLetter.click();
+                        .visibilityOfElementLocated(By
+                                .xpath(GOOGLE_LETTER_LINK_LOCATOR)));
+        googleLetterLink.click();
 
 
         WebElement estimatedPrice = findElementLocatedBy(By
-                .xpath("//h2[contains(text(), 'Estimated Monthly Cost:')]"));
+                .xpath(ESTIMATED_PRICE_LABEL_LOCATOR));
 
         return estimatedPrice.getText();
     }
-
-
 }

@@ -3,23 +3,26 @@ package com.github.valeryad.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GoogleCloudSearchResultsPage extends AbstractPage {
 
+    private static final String PRICING_CALCULATOR_SEARCH_RESULT_LOCATOR_PATTERN = "//div[@class='gs-title']/a[child::b[text()='%1$s']] |" +
+            " //a[@class='gs-title' and text()='%1$s']";
 
     public GoogleCloudSearchResultsPage(WebDriver driver) {
         super(driver);
     }
 
-    public GoogleCloudPricingCalculatorPage selectPricingCalculatorResult(String searchTerm) {
+    @Override
+    public GoogleCloudEstimateResultsPage openPage() {
+        throw new RuntimeException("This method does not supposed to be used in this class." +
+                "If developer for some reasons really need to use it, its need to be overridden");
+    }
 
-        WebElement pricingCalculatorResult = new WebDriverWait(driver, COMMON_TIMEOUT).
-                until(ExpectedConditions.presenceOfElementLocated(By.
-                        xpath(String.format("//div[@class='gs-title']/a[child::b[text()='%1$s']] |" +
-                                " //a[@class='gs-title' and text()='%1$s']", searchTerm))));
-        pricingCalculatorResult.click();
+    public GoogleCloudPricingCalculatorPage selectPricingCalculatorResult(String searchTerm) {
+        WebElement pricingCalculatorSearchResult = findElementLocatedBy(By
+                .xpath(String.format(PRICING_CALCULATOR_SEARCH_RESULT_LOCATOR_PATTERN, searchTerm)));
+        pricingCalculatorSearchResult.click();
 
         return new GoogleCloudPricingCalculatorPage(driver);
     }

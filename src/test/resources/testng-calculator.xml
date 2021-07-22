@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="pricing calculator test" verbose="1" >
+    <test name="equation email and calc results" >
+        <classes>
+            <class name="com.github.valeryad.test.GooglePricingCalculatorTest" />
+        </classes>
+    </test>
+</suite>
