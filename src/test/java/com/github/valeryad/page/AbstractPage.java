@@ -26,7 +26,7 @@ public abstract class AbstractPage {
 
     public WebElement findElementLocatedBy(By by) {
         return new WebDriverWait(driver, COMMON_TIMEOUT)
-                .until(ExpectedConditions.presenceOfElementLocated(by));
+                .until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
     public List<WebElement> findElementsLocatedBy(By by) {
