@@ -9,11 +9,9 @@ public class GoogleCloudEmailEstimatePage extends AbstractPage {
 
     private static final String BUTTON_ARIA_LABEL_LOCATOR = "//button[@aria-label='Send Email']";
 
-    @FindBy(xpath = "//input[@name='description' and @type='email']")
-    private WebElement emailInput;
-
     public GoogleCloudEmailEstimatePage(WebDriver driver) {
         super(driver);
+        logger.info("Opened google cloud email estimate page");
     }
 
     @Override
@@ -23,8 +21,10 @@ public class GoogleCloudEmailEstimatePage extends AbstractPage {
     }
 
     public void sendEmail(String email) {
-        emailInput.sendKeys(email);
+        WebElement emailInput = findElementLocatedBy(By.xpath("//input[@name='description' and @type='email']"));
+                emailInput.sendKeys(email);
         WebElement sendEmailButton = findElementLocatedBy(By.xpath(BUTTON_ARIA_LABEL_LOCATOR));
         sendEmailButton.click();
+        logger.info(String.format("Email with estimate result has been sent to %s", email));
     }
 }

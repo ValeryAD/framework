@@ -11,6 +11,7 @@ public class GoogleCloudSearchResultsPage extends AbstractPage {
 
     public GoogleCloudSearchResultsPage(WebDriver driver) {
         super(driver);
+        logger.info("Opened google cloud search results page");
     }
 
     @Override
@@ -23,7 +24,7 @@ public class GoogleCloudSearchResultsPage extends AbstractPage {
         WebElement pricingCalculatorSearchResult = findElementLocatedBy(By
                 .xpath(String.format(PRICING_CALCULATOR_SEARCH_RESULT_LOCATOR_PATTERN, searchTerm)));
         pricingCalculatorSearchResult.click();
-
+        logger.info(String.format("Picked %s link from results", searchTerm));
         return new GoogleCloudPricingCalculatorPage(driver);
     }
 }

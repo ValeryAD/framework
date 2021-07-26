@@ -5,25 +5,25 @@ import com.github.valeryad.model.Machine;
 import com.github.valeryad.page.GoogleCloudEstimateResultsPage;
 import com.github.valeryad.page.GoogleCloudHomePage;
 import com.github.valeryad.service.MachineCreator;
+import com.github.valeryad.util.TestListener;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.*;
 
+@Listeners({TestListener.class})
 public abstract class AbstractTest {
     private final static String SEARCH_TERM = "Google Cloud Platform Pricing Calculator";
 
     protected WebDriver driver;
     protected Machine machine;
-    protected GoogleCloudEstimateResultsPage resultsPage;
 
     @BeforeClass(alwaysRun = true)
     protected void setUp() {
         driver = DriverSingleton.getDriver();
         machine = MachineCreator.withParametersFromProperty();
-        resultsPage = performEstimateByGoogleCloudCalculator();
     }
 
-    private GoogleCloudEstimateResultsPage performEstimateByGoogleCloudCalculator() {
+
+    protected GoogleCloudEstimateResultsPage performEstimateByGoogleCloudCalculator() {
         return new GoogleCloudHomePage(driver)
                 .openPage()
                 .searchResultsByTerm(SEARCH_TERM)
@@ -31,7 +31,7 @@ public abstract class AbstractTest {
                 .fillNumberOfInstancesField(machine.getNumberInstances())
                 .selectOSAndSoftware(machine.getOsAndSoftware())
                 .selectVMClass(machine.getVmClass())
-                .selectSeriesAndInstanceType(machine.getSeries(), machine.getType())
+                .selectSeriesAndInstanceType(machine.getSeries(), machine.getInstanceType())
                 .addGPUs(machine.getNumberGPUs(), machine.getGpuType())
                 .addLocalSSD(machine.getLocalSSD())
                 .selectDataCenterLocation(machine.getRegion())

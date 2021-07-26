@@ -21,7 +21,7 @@ public class MachineCreator {
         machine.setOsAndSoftware(TestDataReader.getTestData(TEST_DATA_OS_AND_SOFTWARE));
         machine.setVmClass(TestDataReader.getTestData(TEST_DATA_VM_CLASS));
         machine.setSeries(TestDataReader.getTestData(TEST_DATA_SERIES));
-        machine.setType(TestDataReader.getTestData(TEST_DATA_TYPE));
+        machine.setInstanceType(TestDataReader.getTestData(TEST_DATA_TYPE));
         machine.setNumberGPUs(Integer.parseInt(TestDataReader.getTestData(TEST_DATA_NUMBER_GPUS)));
         machine.setGPUType(TestDataReader.getTestData(TEST_DATA_GPU_TYPE));
         machine.setLocalSSD(TestDataReader.getTestData(TEST_DATA_LOCAL_SSD));

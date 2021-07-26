@@ -8,7 +8,7 @@ public class Machine {
     private String osAndSoftware;
     private String vmClass;
     private String series;
-    private String type;
+    private String instanceType;
     private int numberGPUs;
     private String gpuType;
     private String localSSD;
@@ -48,12 +48,12 @@ public class Machine {
         this.series = series;
     }
 
-    public String getType() {
-        return type;
+    public String getInstanceType() {
+        return instanceType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setInstanceType(String instanceType) {
+        this.instanceType = instanceType;
     }
 
     public int getNumberGPUs() {
@@ -102,7 +102,7 @@ public class Machine {
         int prime = 31;
         result = prime * result + numberInstances;
         result = prime * result + numberGPUs;
-        return prime * result + Objects.hash(osAndSoftware, vmClass, series, type, gpuType, localSSD, region, committedUsage);
+        return prime * result + Objects.hash(osAndSoftware, vmClass, series, instanceType, gpuType, localSSD, region, committedUsage);
     }
 
     @Override
@@ -117,7 +117,7 @@ public class Machine {
         return Objects.equals(osAndSoftware, machine.osAndSoftware) &&
                 Objects.equals(vmClass, machine.vmClass) &&
                 Objects.equals(series, machine.series) &&
-                Objects.equals(type, machine.type) &&
+                Objects.equals(instanceType, machine.instanceType) &&
                 Objects.equals(gpuType, machine.gpuType) &&
                 Objects.equals(localSSD, machine.localSSD) &&
                 Objects.equals(region, machine.region) &&
@@ -131,7 +131,7 @@ public class Machine {
                 ", osAndSoftware='" + osAndSoftware + '\'' +
                 ", vmClass='" + vmClass + '\'' +
                 ", series='" + series + '\'' +
-                ", type='" + type + '\'' +
+                ", type='" + instanceType + '\'' +
                 ", gpusNumber='" + numberGPUs + '\'' +
                 ", gpuType='" + gpuType + '\'' +
                 ", localSSD='" + localSSD + '\'' +

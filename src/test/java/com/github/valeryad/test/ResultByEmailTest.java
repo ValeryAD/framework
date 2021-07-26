@@ -1,7 +1,6 @@
 package com.github.valeryad.test;
 
 import com.github.valeryad.page.GoogleCloudEstimateResultsPage;
-import com.github.valeryad.page.GoogleCloudHomePage;
 import com.github.valeryad.page.TenMinutesEmailPage;
 import com.github.valeryad.util.StringUtil;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,19 +9,19 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
-public class GooglePricingCalculatorTest extends AbstractTest {
+public class ResultByEmailTest extends AbstractTest {
     private static final double DELTA = 0.01;
 
     @Test(description = "Results received from email and google calculator should be equal")
     public void emailAndGoogleCalcResultsShouldBeEqual() {
-        String estimatedCostFromCalculator = resultsPage.readEstimatedCost();
-        String estimatedCostReceivedByEmail = receiveEstimationCostByEmail(resultsPage);
+        GoogleCloudEstimateResultsPage estimateResultsPage = performEstimateByGoogleCloudCalculator();
+
+        String estimatedCostFromCalculator = estimateResultsPage.readEstimatedCost();
+        String estimatedCostReceivedByEmail = receiveEstimationCostByEmail(estimateResultsPage);
 
         Assert.assertEquals(StringUtil.getPriceFromEstimatedCostString(estimatedCostFromCalculator),
                 StringUtil.getPriceFromEstimatedCostString(estimatedCostReceivedByEmail), DELTA);
     }
-
-
 
 
     public String receiveEstimationCostByEmail(GoogleCloudEstimateResultsPage resultsPage) {

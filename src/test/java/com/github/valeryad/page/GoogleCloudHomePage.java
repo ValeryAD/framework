@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GoogleCloudHomePage extends AbstractPage {
     private final static String GOOGLE_CLOUD_PAGE_URL = "https://cloud.google.com/";
@@ -24,17 +22,20 @@ public class GoogleCloudHomePage extends AbstractPage {
 
     public GoogleCloudHomePage openPage() {
         driver.get(GOOGLE_CLOUD_PAGE_URL);
+        logger.info("Opened Google cloud home page");
+        System.out.println("Opened Google cloud home page");
         return this;
     }
 
     public GoogleCloudSearchResultsPage searchResultsByTerm(String term) {
+        System.out.println("try to find results");
         searchElement.click();
         searchInput.sendKeys(term);
 
         WebElement searchButton = findElementLocatedBy(By
                 .xpath(SEARCH_BUTTON_LOCATOR));
         searchButton.click();
-
+        logger.info(String.format("Search by term \"%s\" has been started", term));
         return new GoogleCloudSearchResultsPage(driver);
     }
 }

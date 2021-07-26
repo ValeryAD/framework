@@ -62,6 +62,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         super(driver);
         driver.switchTo().frame(0);
         driver.switchTo().frame("myFrame");
+        logger.info("Opened google cloud pricing calculator page");
     }
 
     @Override
@@ -74,6 +75,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage fillNumberOfInstancesField(int numberOfInstances) {
         computeEngineSection.click();
         numberOfInstanceInput.sendKeys(String.valueOf(numberOfInstances));
+        logger.info(String.format("Filling calculator form: number of instances = \"%d\"", numberOfInstances));
         return this;
     }
 
@@ -82,6 +84,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         WebElement osSoftwareOption = findElementLocatedBy(By
                 .xpath(String.format(OS_SOFTWARE_OPTION_LOCATOR_PATTERN, option)));
         osSoftwareOption.click();
+        logger.info(String.format("Filling calculator form: selected OS/Software - \"%s\"", option));
         return this;
     }
 
@@ -90,6 +93,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         WebElement vmClassOption = findElementLocatedBy(By
                 .xpath(String.format(VM_CLASS_OPTION_LOCATOR_PATTERN, option)));
         vmClassOption.click();
+        logger.info(String.format("Filling calculator form: selected VM class - \"%s\"", option));
         return this;
     }
 
@@ -103,6 +107,8 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         WebElement instanceTypeOption = findElementLocatedBy(By.xpath(String
                 .format(INSTANCE_TYPE_OPTION_LOCATOR_PATTERN, instanceTypeOptionStr)));
         instanceTypeOption.click();
+        logger.info(String.format("Filling calculator form: selected series - \"%s\" and instance type - \"%s\"",
+                seriesOptionStr, instanceTypeOptionStr));
         return this;
     }
 
@@ -120,6 +126,8 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         WebElement gpuOption = findElementLocatedBy(By.xpath(String
                 .format(GPU_OPTION__LOCATOR_PATTERN, gpuOptionStr)));
         gpuOption.click();
+        logger.info(String.format("Filling calculator form: number of GPUs - \"%d\" and GPU type - \"%s\"",
+                gpusNumber, gpuOptionStr));
         return this;
     }
 
@@ -128,6 +136,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         WebElement localSSDOption = findElementLocatedBy(By.xpath(String
                 .format(LOCAL_SST_OPTION_LOCATOR_PATTERN, option)));
         localSSDOption.click();
+        logger.info(String.format("Filling calculator form: add local SSD - \"%s\"", option));
         return this;
     }
 
@@ -136,6 +145,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         WebElement LocationOption = findElementLocatedBy(By.xpath(String
                 .format(LOCATION_OPTION_LOCATOR_PATTERN, option)));
         LocationOption.click();
+        logger.info(String.format("Filling calculator form: select data center location - \"%s\"", option));
         return this;
     }
 
@@ -144,11 +154,13 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         WebElement committedUsageOption =
                 findElementsLocatedBy(By.xpath(String.format(COMMITTED_USAGE_OPTION_LOCATOR_PATTERN, option))).get(1);
         committedUsageOption.click();
+        logger.info(String.format("Filling calculator form: select committed usage term - \"%s\"", option));
         return this;
     }
 
     public GoogleCloudEstimateResultsPage estimate() {
         addToEstimateButton.click();
+        logger.info("Filling calculator form: pressed add to estimate button");
         return new GoogleCloudEstimateResultsPage(driver);
     }
 }

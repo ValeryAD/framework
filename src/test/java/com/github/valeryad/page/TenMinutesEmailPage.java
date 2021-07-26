@@ -24,24 +24,26 @@ public class TenMinutesEmailPage extends AbstractPage {
 
     public TenMinutesEmailPage openPage() {
         driver.get(PAGE_URL);
+        logger.info("Opened ten minutes email page");
         return this;
     }
 
     public String readEmailAddress() {
+        logger.info("Reading email address from ten minutes email page");
         return emailAddressLabel.getAttribute(ATTRIBUTE);
     }
 
     public String readEstimatedPrice() {
+        logger.info("Waiting for receiving email");
         WebElement googleLetterLink = new WebDriverWait(driver, TIMEOUT_WAITING_FOR_LETTER)
                 .until(ExpectedConditions
                         .visibilityOfElementLocated(By
                                 .xpath(GOOGLE_LETTER_LINK_LOCATOR)));
         googleLetterLink.click();
 
-
         WebElement estimatedPrice = findElementLocatedBy(By
                 .xpath(ESTIMATED_PRICE_LABEL_LOCATOR));
-
+        logger.info("Reading estimated price from email");
         return estimatedPrice.getText();
     }
 }
