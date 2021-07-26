@@ -7,7 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class GoogleCloudHomePage extends AbstractPage {
     private final static String GOOGLE_CLOUD_PAGE_URL = "https://cloud.google.com/";
-    private static final String SEARCH_BUTTON_LOCATOR = "//div[@id='devsite-search-popout-container-id-1']//*[contains(text(), 'Все результаты')]";
+    private static final String SEARCH_BUTTON_LOCATOR = "//div[@id='devsite-search-popout-container-id-1']//*[contains(text(), 'Все результаты')] | " +
+            "//div[@id='devsite-search-popout-container-id-1']//*[contains(text(), 'All results')]";
 
     @FindBy(xpath = "//div[@class='devsite-search-container']")
     private WebElement searchElement;
