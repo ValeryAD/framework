@@ -14,9 +14,7 @@ public class TenMinutesEmailPage extends AbstractPage {
     private static final int TIMEOUT_WAITING_FOR_LETTER = 40;
     private static final String GOOGLE_LETTER_LINK_LOCATOR = "//a[contains(text(), 'Google Cloud Platform Price Estimate')]";
     private static final String ESTIMATED_PRICE_LABEL_LOCATOR = "//h2[contains(text(), 'Estimated Monthly Cost:')]";
-
-    @FindBy(id = "mail")
-    private WebElement emailAddressLabel;
+    private static final String EMAIL_ADDRESS_LABEL_ID = "mail";
 
     public TenMinutesEmailPage(WebDriver driver) {
         super(driver);
@@ -30,7 +28,7 @@ public class TenMinutesEmailPage extends AbstractPage {
 
     public String readEmailAddress() {
         logger.info("Reading email address from ten minutes email page");
-        return emailAddressLabel.getAttribute(EMAIL_ADDRESS_ATTRIBUTE);
+        return findElementLocatedBy(By.id(EMAIL_ADDRESS_LABEL_ID)).getAttribute(EMAIL_ADDRESS_ATTRIBUTE);
     }
 
     public String readEstimatedPrice() {
