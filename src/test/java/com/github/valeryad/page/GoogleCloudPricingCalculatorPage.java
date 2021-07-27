@@ -98,12 +98,13 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudPricingCalculatorPage selectSeriesAndInstanceType(String seriesOptionStr, String instanceTypeOptionStr) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", seriesSelect);
 
         seriesSelect.click();
         WebElement seriesOption = findElementLocatedBy(By.xpath(String
                 .format(SERIES_OPTION_LOCATOR_PATTERN, seriesOptionStr)));
         seriesOption.click();
+        
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", seriesSelect);
 
         instanceTypeSelect.click();
         WebElement instanceTypeOption = findElementLocatedBy(By.xpath(String
