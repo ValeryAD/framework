@@ -98,7 +98,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudPricingCalculatorPage selectSeriesAndInstanceType(String seriesOptionStr, String instanceTypeOptionStr) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", vmClassSelect);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", seriesSelect);
 
         seriesSelect.click();
         WebElement seriesOption = findElementLocatedBy(By.xpath(String
@@ -133,7 +133,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
 
     public GoogleCloudPricingCalculatorPage addLocalSSD(String option) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", localSSDSelect);
-        
+
         localSSDSelect.click();
         WebElement localSSDOption = findElementLocatedBy(By.xpath(String
                 .format(LOCAL_SST_OPTION_LOCATOR_PATTERN, option)));
