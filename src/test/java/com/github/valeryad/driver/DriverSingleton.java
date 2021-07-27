@@ -21,7 +21,7 @@ public class DriverSingleton {
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
                     FirefoxOptions firefoxOptions = new FirefoxOptions()
-                            .addArguments("--headless", "window-size=1920,1080");
+                            .addArguments("--headless",  "--width=1366", "--height=1536");
                     driver = new FirefoxDriver(firefoxOptions);
                     logger.info(String.format("window-size=%dx%d",
                             driver.manage().window().getSize().width,
@@ -31,14 +31,13 @@ public class DriverSingleton {
                 default: {
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions()
-                            .addArguments("--headless", "--width=1920", "--height=1080");
+                            .addArguments("--headless", "window-size=1366,1536");
                     driver = new ChromeDriver(chromeOptions);
                     logger.info(String.format("window-size=%dx%d",
                             driver.manage().window().getSize().width,
                             driver.manage().window().getSize().height));
                 }
             }
-            //driver.manage().window().maximize();
         }
         return driver;
     }

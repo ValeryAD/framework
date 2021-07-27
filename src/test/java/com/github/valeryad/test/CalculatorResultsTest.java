@@ -13,6 +13,8 @@ public class CalculatorResultsTest extends SmokeTest {
     private final static String EXPECTED_LOCAL_SSD_RESULT_PATTERN = "Total available local SSD space %s GiB";
     private final static String EXPECTED_COMMITTED_USAGE_RESULT_PATTERN = "Commitment term: %s";
 
+
+
     @Test(description = "\"VM class\" section in estimation results should be equal to vm class that has been pointed out",
             dependsOnMethods = {"canGetResultFromCloudCalculator"})
     public void vmClassShouldBeEqualToGivenOne() {
@@ -36,7 +38,7 @@ public class CalculatorResultsTest extends SmokeTest {
 
     @Test(description = "\"Total available local SSD space\" section in estimation results should be equal to local SSD option that has been pointed out",
             dependsOnMethods = {"canGetResultFromCloudCalculator"})
-    public void localSSDshouldBeEqualToGivenOne() {
+    public void localSSDShouldBeEqualToGivenOne() {
         Assert.assertEquals(estimateResultsPage.readResultsLocalSSDinfo(),
                 String.format(EXPECTED_LOCAL_SSD_RESULT_PATTERN, machine.getLocalSSD()));
     }

@@ -2,8 +2,9 @@
 
 <suite name="google calculator tests" verbose="1" >
     <test name="google calculator tests"   >
-        <packages>
-            <package name="com.github.valeryad.test" />
-        </packages>
+        <classes>
+            <class name="com.github.valeryad.test.CalculatorResultsTest" />
+            <class name="com.github.valeryad.test.ResultByEmailTest" />
+        </classes>
     </test>
 </suite>

@@ -29,7 +29,6 @@ public class GoogleCloudHomePage extends AbstractPage {
     }
 
     public GoogleCloudSearchResultsPage searchResultsByTerm(String term) {
-        System.out.println("try to find results");
         searchElement.click();
         searchInput.sendKeys(term);
 

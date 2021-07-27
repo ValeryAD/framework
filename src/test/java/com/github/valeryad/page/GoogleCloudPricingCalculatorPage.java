@@ -1,7 +1,6 @@
 package com.github.valeryad.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +13,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     private static final String INSTANCE_TYPE_OPTION_LOCATOR_PATTERN = "//md-option/div[contains(.,'%s')]/..";
     private static final String NUMBER_GPU_OPTION_LOCATOR_PATTERN = "//md-option[div[@class='md-text ng-binding' and text()=%s]]";
     private static final String GPU_OPTION__LOCATOR_PATTERN = "//md-option[child::div[contains(.,'%s')]]";
-    private static final String LOCAL_SST_OPTION_LOCATOR_PATTERN = "//md-option[child::div[@class='md-text ng-binding' and contains(text(),'%s')]]";
+    private static final String LOCAL_SSD_OPTION_LOCATOR_PATTERN = "//md-option[child::div[@class='md-text ng-binding' and contains(text(),'%s')]]";
     private static final String LOCATION_OPTION_LOCATOR_PATTERN = "//md-select-menu[@class='md-overflow']//div[contains(text(), '%s')]/..";
     private static final String COMMITTED_USAGE_OPTION_LOCATOR_PATTERN = "//md-select-menu//div[text()='%s']/..";
 
@@ -91,7 +90,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage selectVMClass(String option) {
         vmClassSelect.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", computeEngineSection);
+        //        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", computeEngineSection);
 
         WebElement vmClassOption = findElementLocatedBy(By
                 .xpath(String.format(VM_CLASS_OPTION_LOCATOR_PATTERN, option)));
@@ -107,7 +106,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
                 .format(SERIES_OPTION_LOCATOR_PATTERN, seriesOptionStr)));
         seriesOption.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", seriesSelect);
+        //        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", seriesSelect);
 
         instanceTypeSelect.click();
         WebElement instanceTypeOption = findElementLocatedBy(By.xpath(String
@@ -138,10 +137,10 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage addLocalSSD(String option) {
         localSSDSelect.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", numberOfGPUSelect);
+        //        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", numberOfGPUSelect);
 
         WebElement localSSDOption = findElementLocatedBy(By.xpath(String
-                .format(LOCAL_SST_OPTION_LOCATOR_PATTERN, option)));
+                .format(LOCAL_SSD_OPTION_LOCATOR_PATTERN, option)));
         localSSDOption.click();
         logger.info(String.format("Filling calculator form: add local SSD - \"%s\"", option));
         return this;
@@ -160,7 +159,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage selectCommittedUsageTerm(String option) {
         committedUsageSelect.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", dataCenterLocationSelect);
+        //        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", dataCenterLocationSelect);
 
         WebElement committedUsageOption =
                 findElementsLocatedBy(By.xpath(String.format(COMMITTED_USAGE_OPTION_LOCATOR_PATTERN, option))).get(1);
