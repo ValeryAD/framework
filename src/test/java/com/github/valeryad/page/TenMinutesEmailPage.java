@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class TenMinutesEmailPage extends AbstractPage {
 
     private static final String PAGE_URL = "https://10minemail.com/ru/";
-    private static final String ATTRIBUTE = "value";
+    private static final String EMAIL_ADDRESS_ATTRIBUTE = "value";
     private static final int TIMEOUT_WAITING_FOR_LETTER = 40;
     private static final String GOOGLE_LETTER_LINK_LOCATOR = "//a[contains(text(), 'Google Cloud Platform Price Estimate')]";
     private static final String ESTIMATED_PRICE_LABEL_LOCATOR = "//h2[contains(text(), 'Estimated Monthly Cost:')]";
@@ -30,14 +30,14 @@ public class TenMinutesEmailPage extends AbstractPage {
 
     public String readEmailAddress() {
         logger.info("Reading email address from ten minutes email page");
-        return emailAddressLabel.getAttribute(ATTRIBUTE);
+        return emailAddressLabel.getAttribute(EMAIL_ADDRESS_ATTRIBUTE);
     }
 
     public String readEstimatedPrice() {
         logger.info("Waiting for receiving email");
         WebElement googleLetterLink = new WebDriverWait(driver, TIMEOUT_WAITING_FOR_LETTER)
                 .until(ExpectedConditions
-                        .visibilityOfElementLocated(By
+                        .presenceOfElementLocated(By
                                 .xpath(GOOGLE_LETTER_LINK_LOCATOR)));
         googleLetterLink.click();
 

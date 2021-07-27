@@ -28,7 +28,7 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestFailure(ITestResult iTestResult) {
-        logger.info("Somthing get Wrong!!!!");
+        logger.info("!!!Something went wrong!!!");
         saveScreenshot();
     }
 

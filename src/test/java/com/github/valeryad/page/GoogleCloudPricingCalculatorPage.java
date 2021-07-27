@@ -98,6 +98,8 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudPricingCalculatorPage selectSeriesAndInstanceType(String seriesOptionStr, String instanceTypeOptionStr) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", vmClassSelect);
+
         seriesSelect.click();
         WebElement seriesOption = findElementLocatedBy(By.xpath(String
                 .format(SERIES_OPTION_LOCATOR_PATTERN, seriesOptionStr)));
@@ -115,8 +117,6 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage addGPUs(int gpusNumber, String gpuOptionStr) {
         addGPUsCheckBox.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", operationSystemSelect);
-
         numberOfGPUSelect.click();
         WebElement numberGPUOption = findElementLocatedBy(By.xpath(String
                 .format(NUMBER_GPU_OPTION_LOCATOR_PATTERN, gpusNumber)));
@@ -132,6 +132,8 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudPricingCalculatorPage addLocalSSD(String option) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", localSSDSelect);
+        
         localSSDSelect.click();
         WebElement localSSDOption = findElementLocatedBy(By.xpath(String
                 .format(LOCAL_SST_OPTION_LOCATOR_PATTERN, option)));
