@@ -119,7 +119,6 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         addGPUsCheckBox.click();
 
         numberOfGPUSelect.click();
-
         WebElement numberGPUOption = findElementLocatedBy(By.xpath(String
                 .format(NUMBER_GPU_OPTION_LOCATOR_PATTERN, gpusNumber)));
         numberGPUOption.click();
@@ -136,7 +135,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage addLocalSSD(String option) {
         localSSDSelect.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", localSSDSelect);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", numberOfGPUSelect);
 
         WebElement localSSDOption = findElementLocatedBy(By.xpath(String
                 .format(LOCAL_SST_OPTION_LOCATOR_PATTERN, option)));
@@ -148,8 +147,6 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage selectDataCenterLocation(String option) {
         dataCenterLocationSelect.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", dataCenterLocationSelect);
-
         WebElement LocationOption = findElementLocatedBy(By.xpath(String
                 .format(LOCATION_OPTION_LOCATOR_PATTERN, option)));
         LocationOption.click();
@@ -160,7 +157,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage selectCommittedUsageTerm(String option) {
         committedUsageSelect.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", committedUsageSelect);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", dataCenterLocationSelect);
 
         WebElement committedUsageOption =
                 findElementsLocatedBy(By.xpath(String.format(COMMITTED_USAGE_OPTION_LOCATOR_PATTERN, option))).get(1);
