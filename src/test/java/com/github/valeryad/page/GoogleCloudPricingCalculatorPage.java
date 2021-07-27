@@ -91,7 +91,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage selectVMClass(String option) {
         vmClassSelect.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", operationSystemSelect);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", computeEngineSection);
 
         WebElement vmClassOption = findElementLocatedBy(By
                 .xpath(String.format(VM_CLASS_OPTION_LOCATOR_PATTERN, option)));

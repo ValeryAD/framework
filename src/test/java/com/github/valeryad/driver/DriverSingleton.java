@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 
 public class DriverSingleton {
@@ -19,15 +20,25 @@ public class DriverSingleton {
             switch (System.getProperty("browser")) {
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
+                    FirefoxOptions firefoxOptions = new FirefoxOptions()
+                            .addArguments("--headless", "window-size=1920,1080");
+                    driver = new FirefoxDriver(firefoxOptions);
+                    logger.info(String.format("window-size=%dx%d",
+                            driver.manage().window().getSize().width,
+                            driver.manage().window().getSize().height));
                 }
                 break;
                 default: {
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    ChromeOptions chromeOptions = new ChromeOptions()
+                            .addArguments("--headless", "--width=1920", "--height=1080");
+                    driver = new ChromeDriver(chromeOptions);
+                    logger.info(String.format("window-size=%dx%d",
+                            driver.manage().window().getSize().width,
+                            driver.manage().window().getSize().height));
                 }
             }
-            driver.manage().window().maximize();
+            //driver.manage().window().maximize();
         }
         return driver;
     }
