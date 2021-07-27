@@ -24,7 +24,6 @@ public class GoogleCloudHomePage extends AbstractPage {
     public GoogleCloudHomePage openPage() {
         driver.get(GOOGLE_CLOUD_PAGE_URL);
         logger.info("Opened Google cloud home page");
-        System.out.println("Opened Google cloud home page");
         return this;
     }
 
