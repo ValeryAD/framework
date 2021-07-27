@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class SmokeTest extends AbstractTest {
     GoogleCloudEstimateResultsPage estimateResultsPage;
 
-    @Test
+    @Test(alwaysRun = true, description = "smoke test: fill form of google price calculator and check if there's any result")
     public void canGetResultFromCloudCalculator() {
         estimateResultsPage = performEstimateByGoogleCloudCalculator();
 

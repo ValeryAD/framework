@@ -1,10 +1,8 @@
 package com.github.valeryad.test;
 
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Listeners(com.github.valeryad.util.TestListener.class)
 public class CalculatorResultsTest extends SmokeTest {
 
     private final static String EXPECTED_VM_CLASS_RESULT_PATTERN = "VM class: %s";
@@ -12,7 +10,6 @@ public class CalculatorResultsTest extends SmokeTest {
     private final static String EXPECTED_REGION_RESULT_PATTERN = "Region: %s";
     private final static String EXPECTED_LOCAL_SSD_RESULT_PATTERN = "Total available local SSD space %s GiB";
     private final static String EXPECTED_COMMITTED_USAGE_RESULT_PATTERN = "Commitment term: %s";
-
 
 
     @Test(description = "\"VM class\" section in estimation results should be equal to vm class that has been pointed out",

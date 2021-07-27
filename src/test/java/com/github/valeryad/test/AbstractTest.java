@@ -7,7 +7,9 @@ import com.github.valeryad.page.GoogleCloudHomePage;
 import com.github.valeryad.service.MachineCreator;
 import com.github.valeryad.util.TestListener;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 
 @Listeners({TestListener.class})
 public abstract class AbstractTest {

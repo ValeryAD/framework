@@ -15,7 +15,7 @@ public class MachineCreator {
     private static final String TEST_DATA_REGION = "testdata.machine.region";
     private static final String TEST_DATA_COMMITTED_USAGE = "testdata.machine.committedUsage";
 
-    public static Machine withParametersFromProperty(){
+    public static Machine withParametersFromProperty() {
         Machine machine = new Machine();
         machine.setNumberInstances(Integer.parseInt(TestDataReader.getTestData(TEST_DATA_NUMBER_INSTANCES)));
         machine.setOsAndSoftware(TestDataReader.getTestData(TEST_DATA_OS_AND_SOFTWARE));

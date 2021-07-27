@@ -21,7 +21,7 @@ public class DriverSingleton {
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
                     FirefoxOptions firefoxOptions = new FirefoxOptions()
-                            .addArguments("--headless",  "--width=1366", "--height=1536");
+                            .addArguments("--headless", "--width=1366", "--height=1536");
                     driver = new FirefoxDriver(firefoxOptions);
                     logger.info(String.format("window-size=%dx%d",
                             driver.manage().window().getSize().width,
