@@ -42,7 +42,7 @@ public class CalculatorResultsTest extends SmokeTest {
 
     @Test(description = "\"Commitment term:\" section in estimation results should be equal to commitment term option that has been pointed out",
             dependsOnMethods = {"canGetResultFromCloudCalculator"})
-    public void commitmentTermSholeBeEqualToGivenOne() {
+    public void commitmentTermShouldBeEqualToGivenOne() {
         Assert.assertEquals(estimateResultsPage.readResultsCommitmentTerm(),
                 String.format(EXPECTED_COMMITTED_USAGE_RESULT_PATTERN, machine.getCommittedUsage()));
     }

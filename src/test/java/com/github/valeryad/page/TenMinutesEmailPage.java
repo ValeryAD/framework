@@ -1,9 +1,9 @@
 package com.github.valeryad.page;
 
+import com.github.valeryad.waits.CustomConditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,6 +16,8 @@ public class TenMinutesEmailPage extends AbstractPage {
     private static final String ESTIMATED_PRICE_LABEL_LOCATOR = "//h2[contains(text(), 'Estimated Monthly Cost:')]";
     private static final String EMAIL_ADDRESS_LABEL_ID = "mail";
 
+    private WebDriverWait wait;
+
     public TenMinutesEmailPage(WebDriver driver) {
         super(driver);
     }
@@ -27,8 +29,10 @@ public class TenMinutesEmailPage extends AbstractPage {
     }
 
     public String readEmailAddress() {
-        logger.info("Reading email address from ten minutes email page");
-        return findElementLocatedBy(By.id(EMAIL_ADDRESS_LABEL_ID)).getAttribute(EMAIL_ADDRESS_ATTRIBUTE);
+        new WebDriverWait(driver, COMMON_TIMEOUT).until(CustomConditions.elementContainsEmailAddress(By.id(EMAIL_ADDRESS_LABEL_ID)));
+        WebElement emailAddressLabel = driver.findElement(By.id(EMAIL_ADDRESS_LABEL_ID));
+        logger.info(String.format("Reading email address from ten minutes email page:", emailAddressLabel.getAttribute(EMAIL_ADDRESS_ATTRIBUTE)));
+        return emailAddressLabel.getAttribute(EMAIL_ADDRESS_ATTRIBUTE);
     }
 
     public String readEstimatedPrice() {

@@ -1,10 +1,11 @@
 package com.github.valeryad.page;
 
+import com.github.valeryad.waits.CustomConditions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GoogleCloudPricingCalculatorPage extends AbstractPage {
 
@@ -16,7 +17,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     private static final String GPU_OPTION__LOCATOR_PATTERN = "//md-option[child::div[contains(.,'%s')]]";
     private static final String LOCAL_SSD_OPTION_LOCATOR_PATTERN = "//md-option[child::div[@class='md-text ng-binding' and contains(text(),'%s')]]";
     private static final String LOCATION_OPTION_LOCATOR_PATTERN = "//md-select-menu[@class='md-overflow']//div[contains(text(), '%s')]/..";
-    private static final String COMMITTED_USAGE_OPTION_LOCATOR_PATTERN = "//md-option[@ng-value='%s']/div[contains(text(), '%s')]";
+    private static final String COMMITTED_USAGE_OPTION_LOCATOR_PATTERN = "//md-option[child::div[contains(text(), '%s')]]";
 
     @FindBy(xpath = "//md-tab-item[@class='md-tab ng-scope ng-isolate-scope md-ink-ripple md-active']")
     private WebElement computeEngineSection;
@@ -154,11 +155,11 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage selectCommittedUsageTerm(String option) {
         committedUsageSelect.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", localSSDSelect);
 
-        WebElement committedUsageOption =
-                findElementsLocatedBy(By.xpath(String.format(COMMITTED_USAGE_OPTION_LOCATOR_PATTERN, option.substring(0, 1), option))).get(1);
-        committedUsageOption.click();
+        new WebDriverWait(driver, COMMON_TIMEOUT)
+                .until(CustomConditions.pickedRightOption(COMMITTED_USAGE_OPTION_LOCATOR_PATTERN, option));
+        driver.findElements(By.xpath(String.format(COMMITTED_USAGE_OPTION_LOCATOR_PATTERN, option))).get(1).click();
+
         logger.info(String.format("Filling calculator form: select committed usage term - \"%s\"", option));
         return this;
     }
