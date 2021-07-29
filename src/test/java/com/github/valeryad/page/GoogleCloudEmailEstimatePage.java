@@ -22,8 +22,6 @@ public class GoogleCloudEmailEstimatePage extends AbstractPage {
     public void sendEmail(String email) {
         WebElement emailInput = findElementLocatedBy(By.xpath("//input[@name='description' and @type='email']"));
         emailInput.sendKeys(email);
-        logger.info("email input now contains text: " + emailInput.getAttribute("value"));
-
         WebElement sendEmailButton = findElementLocatedBy(By.xpath(BUTTON_ARIA_LABEL_LOCATOR));
         sendEmailButton.click();
         logger.info(String.format("Email with estimate result has been sent to: %s", email));

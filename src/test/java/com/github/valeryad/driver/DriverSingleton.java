@@ -36,8 +36,6 @@ public class DriverSingleton {
                     logger.info(String.format("window-size=%dx%d",
                             driver.manage().window().getSize().width,
                             driver.manage().window().getSize().height));
-                    /*driver = new ChromeDriver();
-                    driver.manage().window().maximize();*/
                 }
             }
         }
