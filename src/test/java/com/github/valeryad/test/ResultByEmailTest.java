@@ -19,8 +19,8 @@ public class ResultByEmailTest extends AbstractTest {
         String estimatedCostFromCalculator = estimateResultsPage.readEstimatedCost();
         String estimatedCostReceivedByEmail = receiveEstimationCostByEmail(estimateResultsPage);
 
-        Assert.assertEquals(StringUtil.getPriceFromEstimatedCostString(estimatedCostFromCalculator),
-                StringUtil.getPriceFromEstimatedCostString(estimatedCostReceivedByEmail), DELTA);
+        Assert.assertEquals(StringUtil.getPriceFromEstimatedCostString(estimatedCostReceivedByEmail),
+                StringUtil.getPriceFromEstimatedCostString(estimatedCostFromCalculator), DELTA);
     }
 
 
